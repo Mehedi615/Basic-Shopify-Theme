@@ -1,1 +1,33 @@
 <h1>{{ shop.name }}</h1>
+
+<ul class="links">
+  {% for link in linklists.main-menu.links -%}
+    <li>{{ link.title | link_to: link.url }}</li>
+  {%- endfor %}
+</ul>
+
+
+{% style %}
+  a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+     &:hover {
+      background-color: blue;
+      color: #fff;
+    }
+  }
+  .links {
+    display: flex;
+    justify-content: space-between;
+    aign-items: center;
+  }
+  li {
+    list-style: none;
+    padding: 0 10px;
+  }
+{% endstyle %}

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="products">
+    {% for product in collections['summer-collection'].products %}
+      <div class="product">
+        <h1>{{ product.title }}</h1>
+        <img src="{{product.featured_image | img_url: 'medium' }}" alt="{{product.title | escape }}">
+        <p>{{ product.description }}</p>
+        <p>{{ product.price | money }}</p>
+        {{- product.title | link_to: product.url }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{% style %}
+  .container {
+    margin: 0 auto;
+  }
+  .products {
+
+    display: grid;
+    grid-gap: 10px;
+
+    grid-template-columns: repeat(4, 1fr);
+
+  }
+  .product {
+
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+  }
+{% endstyle %}
