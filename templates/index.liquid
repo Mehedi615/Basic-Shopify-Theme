@@ -1,7 +1,8 @@
 <div class="container">
   <div class="products">
-    {% for product in collections['summer-collection'].products %}
-      <div class="product">
+    {% for product in collections %}
+      <div class="product card">
+
         <h1>{{ product.title }}</h1>
         <img src="{{product.featured_image | img_url: 'medium' }}" alt="{{product.title | escape }}">
         <p>{{ product.description }}</p>
@@ -12,6 +13,10 @@
   </div>
 </div>
 
+
+{% for collection in collections %}
+  {{- collection.title | link_to: collection.url }}
+{% endfor %}
 
 
 {% style %}
@@ -29,7 +34,18 @@
   .product {
 
     padding: 10px;
-    border: 1px solid black;
+    border-radius: 20px;
     text-align: center;
+  }
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    background-color: white;
+    margin: 20px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
   }
 {% endstyle %}

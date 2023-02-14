@@ -1,0 +1,40 @@
+<table class="cart-table">
+  <thead>
+    <tr>
+      <th class="product-info">Product</th>
+      <th class="price">Price</th>
+      <th class="quantity">Quantity</th>
+      <th class="total">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart.items %}
+      <tr class="cart-item">
+        <td class="product-info">
+          <a href="{{ item.product.url }}">
+            <img src="{{ item.product.featured_image.src | img_url: 'medium' }}" alt="{{ item.product.title }}">
+            {{ item.product.title }}
+          </a>
+        </td>
+        <td class="price">{{ item.price | money }}</td>
+        <td class="quantity">
+          <input
+            type="number"
+            name="updates[]"
+            id="updates_{{ item.id }}"
+            value="{{ item.quantity }}"
+            min="1">
+        </td>
+        <td class="total">{{ item.line_price | money }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="cart-footer">
+  <p>Subtotal:
+    <span>{{ cart.total_price | money }}</span>
+  </p>
+  <a href="{{ routes.cart_url }}" class="btn btn-update">Update Cart</a>
+  <a href="{{ routes.checkout_url }}" class="btn btn-checkout">Checkout</a>
+</div>

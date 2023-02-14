@@ -1,0 +1,34 @@
+<div class="collections-page">
+  <h1>{{ collection.title }}</h1>
+  <p class="description">{{ collection.description }}</p>
+
+  <div class="collection-products">
+    {% for product in collection.products %}
+      <div class="product">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title }}">
+          <h2>{{ product.title }}</h2>
+          <p class="price">{{ product.price | money }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% style %}
+  .collection-products {
+
+    display: grid;
+    grid-gap: 10px;
+
+    grid-template-columns: repeat(4, 1fr);
+
+  }
+  .product {
+
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+  }
+{% endstyle %}
